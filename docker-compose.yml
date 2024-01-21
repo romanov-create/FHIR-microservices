@@ -27,9 +27,25 @@ services:
 
 
   hapi-fhir:
-    image: hapiproject/hapi:latest
+    build: ./hapi-fhir-jpaserver-starter
     ports:
       - "8003:8080"
+    depends_on:
+      - db
+    networks:
+      - my-network
+
+  db:
+    image: postgres:15.5
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: admin
+      POSTGRES_USER: admin
+      POSTGRES_DB: hapi
+    volumes:
+      - hapiData:/var/lib/postgresql/data
     networks:
       - my-network
 
@@ -62,3 +78,6 @@ services:
 networks:
   my-network:
     driver: bridge
+
+volumes:
+  hapiData:
