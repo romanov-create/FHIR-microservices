@@ -2,14 +2,19 @@
 ## Contains:
 - fhir-endpoints - spring boot microservice that exposes the REST endpoint with Spring MVC Web
 - fhir-kafka-listener -  spring boot microservice with a Kafka listener
+- hapi-fhir-jpaserver-starter
 ### Also in docker compose file exists servers:
 - zookeeper
 - kafka
-- hapi-fhir
 
 ## For quick start :
 1) pull project
-2) run command: sudo docker-compose up --build
+2) run maven goals 'clean install' for:
+  - fhir-endpoints
+  - fhir-kafka-listener 
+  - hapi-fhir-jpaserver-starter
+3) check ports settings in docker-compose file
+4) run command: sudo docker-compose up --build
 
 ## For test: 
 run tests in FHIR-microservices/fhir-endpoints/test/FhirProcessingServiceImplTest
